@@ -1,0 +1,98 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+% Used to embed Sage code in latex
+%\usepackage{sagetex}
+
+% Math Environment
+\usepackage{euler}        % Euler font
+\usepackage{amsmath}      % Math macros
+\usepackage{amssymb}      % Math symbols
+\usepackage{unicode-math} % Unicode support
+
+
+\usepackage[makeroom]{cancel} % Used to cancel terms in algebraic equations
+\usepackage{ulem} % Different underline environments
+\usepackage{polynom} %Polynomial long division
+
+% Typesetting Rules
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+% Common Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\Q{\mathbb{Q}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+\def\res{\mathop{\text{Res}}\limits}
+
+% Color
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pagecolor}
+% \definecolor{DeepMossGreen}{HTML}{394820}
+% \pagecolor{DeepMossGreen}
+% \color{Goldenrod}
+
+\begin{document}
+(a) Assume $f$ is differentiable.
+\[f(x)f(y) = f(x+y) \implies f(0)f(1) = f(0+1) = f(1) \implies f(0) =
+  1\]
+\[f'(x) = \lim_{h\rightarrow 0} \frac{f(x+h) - f(x)}{h} =
+  \lim_{h\rightarrow 0} \frac{f(x)f(h) - f(x)}{h}  = f(x) \lim_{h\rightarrow 0} \frac{f(h) - 1}{h}\]
+\[f(0) = 1 \implies \lim_{h\rightarrow 0} \frac{f(h) - 1}{h} =
+  \lim_{h\rightarrow 0} \frac{f(h) - f(0)}{h} = \lim_{h\rightarrow 0}
+  \frac{f(0+h) - f(0)}{h} = f'(0)\]
+\[f'(0) = \lim_{h\rightarrow 0} \frac{f(h) - 1}{h} \implies f'(x) =
+  f'(0)f(x)\]
+
+$g(x) = e^{cx}$, when $f'(x) = c$, satisfies the same
+properties.Therefore,
+\[\left(\frac{f}{g}\right)' = \frac{cfg -cfg}{g^2} = 0 \implies
+  \frac{f}{g} = M \in \R \implies \forall x\in \R,  f(x) = M g(x)\]
+
+$g(0) = 1 = f(0) \implies M = 1$, therefore $f(x)= e^{cx}.$
+
+(b) Assume $f$ is continuous,
+
+Let  $x= y = 1$ in $f(x)f(y) = f(x+y) \implies f(2) = f(1)^2$.
+Assume $f(k) = f(1)^k$ for all $k \in \N: k\leq n$,
+\[f(n)f(1) = f(1)^nf(1)  \implies f(n+1) = f(1)^{n+1}\]
+
+So, by induction $\forall n\in \N, f(n)=f(1)^n$.
+
+\[f(x)f(y) = f(x+y) \implies f(-x)f(x) = f(-x+x) = f(0) = 1 \implies
+  \forall x \in \R, f(-x) = \frac{1}{f(x)}\]
+\[ f(-1) = \frac{1}{f(1)} \implies  \forall n\in\N, f(-n) =\frac{1}{f(n)} =
+  \frac{1}{f(1)^n}\]
+
+So, \[\forall n\in \Z, f(n) = f(1)^n\]
+
+From $f(x)f(y) = f(x+y)$ an induction argument and extension to $\Z$ like above shows, \[
+  \forall p\in \Z, x\in \R, f\left(p x\right) =
+  f\left(x\sum_{k=1}^{p} 1\right) = f\left(x
+  \right)^p \quad (1)\]
+So,
+\[f(px) = f(x)^p \implies \log f(px) = p \log f(x) \implies
+  \frac{1}{p} \log f(px) = \log f(x) \implies f(x) = e^{\frac{1}{p}
+    \log f(px)} = f(px)^{1/p}\]
+
+Let $x = \frac{1}{p}$ then, \[f(x) = f(px)^{1/p} \implies
+  f\left(\frac{1}{p}\right) = f\left(p\frac{1}{p}\right)^{1/p} = f(1)^{1/p} \]
+
+So, \[\forall p\in \Z, f\left(\frac{1}{p}\right) = f(1)^{1/p}\]
+
+Thus by equation $(1)$,
+\[\forall r \in \Q,\quad  f\left(r \right) = f(1)^{r}\]
+
+Since, $\Q$ is dense in $\R$ and $f$ agrees with $g (x) = e^{cx}$ at all
+rational numbers, $f = g$ by a previous exercise.
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+% Used to embed Sage code in latex
+%\usepackage{sagetex}
+
+% Math Environment
+\usepackage{euler}        % Euler font
+\usepackage{amsmath}      % Math macros
+\usepackage{amssymb}      % Math symbols
+\usepackage{unicode-math} % Unicode support
+
+
+\usepackage[makeroom]{cancel} % Used to cancel terms in algebraic equations
+\usepackage{ulem} % Different underline environments
+\usepackage{polynom} %Polynomial long division
+
+% Typesetting Rules
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+% Common Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\Q{\mathbb{Q}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+\def\res{\mathop{\text{Res}}\limits}
+
+% Color
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pagecolor}
+% \definecolor{DeepMossGreen}{HTML}{394820}
+% \pagecolor{DeepMossGreen}
+% \color{Goldenrod}
+
+\begin{document}
+
+$|\sin 0x| = 0 =  0|\sin x|$ and  $|\sin 1x| = 1|\sin x|$
+
+Assume,\[\exists n\in \N: \forall k\in\N: k\leq n \implies |\sin kx|
+  \leq  k|\sin x|\]
+
+Then,
+\begin{align*} |\sin (n+1)x|  = |\sin (nx + x)| &= |\sin nx\cos x + \cos(nx)\sin x|\\
+  &\leq |\sin nx\cos x| + |\cos(nx)\sin x| = |\sin nx||\cos x| +
+                               |\cos(nx)||\sin x|\\
+  \forall n \in \N, |\cos nx|\leq 1 &\implies |\sin(n+1)x|\leq |\sin nx| +
+                                      |\sin x| \\
+  |\sin nx|
+  \leq  n|\sin x|&\implies |\sin (n+1)x| \leq n|\sin x| +
+                   |\sin x| = (n+1)|\sin x|\end{align*}
+
+Therefore the inequality $|\sin nx|\leq n|\sin x|$ is valid for every
+natural number and zero.
+
+Note, \[0.001 \approx |\sin 0.001| > 0.001|\sin(1)| \approx 0.0008417\]
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

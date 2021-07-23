@@ -1,0 +1,92 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+% Used to embed Sage code in latex
+%\usepackage{sagetex}
+
+
+% Math Environment
+\usepackage{euler}        % Euler font
+\usepackage{amsmath}      % Math macros
+\usepackage{amssymb}      % Math symbols
+\usepackage{unicode-math} % Unicode support
+
+% Physics Environment
+\usepackage{physics}
+
+
+\usepackage[makeroom]{cancel} % Used to cancel terms in algebraic equations
+\usepackage{ulem} % Different underline environments
+\usepackage{polynom} %Polynomial long division
+
+% Typesetting Rules
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+% Common Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\Q{\mathbb{Q}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+\def\res{\mathop{\text{Res}}\limits}
+
+% Color
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pagecolor}
+% \definecolor{DeepMossGreen}{HTML}{394820}
+% \pagecolor{DeepMossGreen}
+% \color{Goldenrod}
+
+\usepackage{graphicx}
+
+\begin{document}
+
+Suppose that $f:\R^m\rightarrow\R^n$ is continuously
+differentiable. Prove that there exists some non-negative integer $r$
+and a non-empty open set $E\subset \R^m$ such that
+\[\text{rant }f'(\vb{x})= r\text{ for all }\vb{x}\in E.\]
+
+\uwave{pf.}
+
+
+
+Proposition 2 of (Lewis, 2009), establishes that the rank of a linear
+map is lower semicontinuous.
+
+Proposition 2 means in particular that set $\{A\in L(\R^m,\R^n)|\, \text{rank }(A)>
+r\}$ is open for all $r\geq 0$.
+
+Let $r\geq 0$, then
+
+$\forall \vb{x}\in \R^m,\, 0\leq \text{ rank }f'(\vb{x}) \leq n \implies \exists
+\vb{x_0}\in \R^m: \forall \vb{x}\in\R^m: \text{ rank }(f'(\vb{x}))\leq \text{ rank
+}(f'(\vb{x_0})) = r$
+
+So, since $f$ is continuously differentiable, we have that,
+\[\exists \delta>0:\forall \varepsilon >0,\, |x-x_0|<\delta \implies
+  \|f'(\vb{x})-f'(\vb{x_0})\| < \varepsilon\]
+Then the lower semicontinuity of rank tells us that,
+\[\|f'(\vb{x})-f'(\vb{x_0})\| < \varepsilon \implies \text{rank
+  }(f'(\vb{x_0}))\leq \text{rank
+  }(f'(\vb{x}))\]
+But since $\vb{x_0}$ is a global maximum of $f'$, it follows that,
+\[\forall\vb{x}\in \R^m:|\vb{x}-\vb{x_0}|<\delta \implies \text{rank
+  }(f'(\vb{x})) = r\quad \blacksquare\]
+
+\subsection{Bibliography}
+Lewis, Andrew. \textit{Semicontinuity of rank and nullity and some
+  consequences}. Online, 2009.
+
+\hspace{7em}URL https://mast.queensu.ca/~andrew/notes/pdf/2009a.pdf.
+\end{document}
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

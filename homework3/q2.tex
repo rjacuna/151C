@@ -1,0 +1,105 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+% Used to embed Sage code in latex
+\usepackage{sagetex}
+
+% Math Environment
+\usepackage{euler}        % Euler font
+\usepackage{amsmath}      % Math macros
+\usepackage{amssymb}      % Math symbols
+\usepackage{unicode-math} % Unicode support
+
+
+\usepackage[makeroom]{cancel} % Used to cancel terms in algebraic equations
+\usepackage{ulem} % Different underline environments
+\usepackage{polynom} %Polynomial long division
+
+% Typesetting Rules
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+% Common Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+\def\res{\mathop{\text{Res}}\limits}
+
+% Color
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pagecolor}
+% \definecolor{DeepMossGreen}{HTML}{394820}
+% \pagecolor{DeepMossGreen}
+% \color{Goldenrod}
+
+\begin{document}
+Let $f(x) = x^3 - \sin^2(x)\tan(x)$ and $g(x) = 2x^2 - \sin^2 x - x\tan x$
+
+Since as $x\rightarrow \pi/2$ both $f$ and $g$ go to $-\infty$, we
+only need to show if $\exists\quad 0<x<\pi/2$ such that $f$ or $g$ are
+positive.
+\begin{sageblock}
+  var('x')
+  f = x^3 -1*sin(x)^2*tan(x)
+  g = 2*x^2 -1*sin(x)*sin(x)-1*x*tan(x)
+  def fderivatives (h,m):
+      return ",".join(["f^{(%d)}(0) =" % n + latex(h.derivative(x,n).subs(x=0)) for n in range(m+1)])
+  def gderivatives (h,m):
+      return ",".join(["g^{(%d)}(0) =" % n + latex(h.derivative(x,n).subs(x=0)) for n in range(m+1)])
+\end{sageblock}
+
+The computation above shows that,
+$\sagestr{fderivatives(f,4)}$ and
+
+$f^{(5)}(x)=$ $\sagestr{latex(f.derivative(x,5).factor())}$
+
+$= -(120 \, \sin\left(x\right)^{2} \tan\left(x\right)^{6}$
+$+ 240 \, \cos\left(x\right) \sin\left(x\right)
+\tan\left(x\right)^{5} + 120 \, \cos\left(x\right)^{2}
+\tan\left(x\right)^{4}$
+$ + 120 \, \sin\left(x\right)^{2} \tan\left(x\right)^{4}$
+
+$ + 240 \, \cos\left(x\right) \sin\left(x\right) \tan\left(x\right)^{3}$
+$ + 120 \, \cos\left(x\right)^{2} \tan\left(x\right)^{2} + 16 \,
+\sin\left(x\right)^{2} \tan\left(x\right)^{2} + 32 \,
+\cos\left(x\right) \sin\left(x\right) \tan\left(x\right) $
+$+ 16 \, \sin\left(x\right)^{2} )$
+
+Since $\sin(x)\cos(x)\tan(x) = \sin^2(x)$, we have,
+
+
+$f^{(5)}(x)$$= -(120 \, \sin\left(x\right)^{2} \tan\left(x\right)^{6}$
+$+ 240 \,  \sin^2\left(x\right)
+\tan\left(x\right)^{4} + 120 \, \cos\left(x\right)^{2}
+\tan\left(x\right)^{4}$
+$ + 120 \, \sin\left(x\right)^{2} \tan\left(x\right)^{4}$
+
+$ + 240 \, \sin^2\left(x\right) \tan\left(x\right)^{2}$
+$ + 120 \, \cos\left(x\right)^{2} \tan\left(x\right)^{2} + 16 \,
+\sin\left(x\right)^{2} \tan\left(x\right)^{2} + 48 \,
+\sin^2\left(x\right)) $
+
+All of the terms inside the parentheses are positive, so the fifth
+derivative is negative always. So, $f$ never changes sign.
+
+
+Also, $\sagestr{gderivatives(g, 3)}$, and
+
+$g^{(4)} =$ $\sagestr{latex(g.derivative(x,4).factor())}$
+
+$= -(24 \, x \tan\left(x\right)^{5} + 40 \, x \tan\left(x\right)^{3} + 24 \, \tan\left(x\right)^{4} - 8 \, \cos\left(x\right)^{2} + 8 \, \sin\left(x\right)^{2} + 16 \, x \tan\left(x\right) + 32 \, \tan\left(x\right)^{2} + 8
+)$
+
+Since $x\tan x$ is positive in $(0,\pi/2)$ and $8-8\cos^2(x)=
+8\sin^2(x)$ it follows $g^{(4)}$ is also negative. So, $g$ never changes
+sign. So, $g$ is negative.
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

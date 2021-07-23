@@ -1,0 +1,158 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+% Used to embed Sage code in latex
+%\usepackage{sagetex}
+
+% Math Environment
+\usepackage{euler}        % Euler font
+\usepackage{amsmath}      % Math macros
+\usepackage{amssymb}      % Math symbols
+\usepackage{unicode-math} % Unicode support
+
+
+\usepackage[makeroom]{cancel} % Used to cancel terms in algebraic equations
+\usepackage{ulem} % Different underline environments
+\usepackage{polynom} %Polynomial long division
+
+% Typesetting Rules
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+% Common Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+\def\res{\mathop{\text{Res}}\limits}
+
+% Color
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pagecolor}
+% \definecolor{DeepMossGreen}{HTML}{394820}
+% \pagecolor{DeepMossGreen}
+% \color{Goldenrod}
+
+\begin{document}
+
+(a)
+\[(e -(1+x)^{1/x})'  = -((1+x)^{1/x})'\]
+\[(1+x)^{1/x} = e^{\frac{1}{x} \log{(1+x)}} \implies \log
+  (1+x)^{1/x} = \frac{1}{x} \log{(1+x)} \implies  \left(\log
+    (1+x)^{1/x} \right)'= \left(  \frac{1}{x} \log{(1+x)}\right)'\]
+\begin{align*}
+  \left(\log (1+x)^{1/x} \right)'
+  &= \frac{1}{(1+x)^{1/x}} \left( (1+x)^{1/x} \right)'\\
+  &= -\frac{1}{x^2}\log(1+x) +\frac{1}{x}\frac{1}{(1+x)}\\
+  &= \left(  \frac{1}{x} \log{(1+x)}\right)'
+\end{align*}
+So,\[ \frac{1}{(1+x)^{1/x}} \left( (1+x)^{1/x} \right)'
+  = -\frac{1}{x^2}\log(1+x) +\frac{1}{x}\frac{1}{(1+x)} \implies
+  \left( (1+x)^{1/x} \right)'  = (1+x)^{1/x}\left(-\frac{1}{x^2}\log(1+x)
+    +\frac{1}{x}\frac{1}{(1+x)}\right)\]
+\[\lim_{x\rightarrow 0} (1+x)^{1/x}\left(-\frac{1}{x^2}\log(1+x)
+    +\frac{1}{x}\frac{1}{(1+x)}\right) = \lim_{x\rightarrow 0}
+  (1+x)^{1/x} \lim_{x\rightarrow 0}\left(-\frac{1}{x^2}\log(1+x)
+    +\frac{1}{x}\frac{1}{(1+x)}\right)\]
+Note,
+\[-\frac{1}{x^2}\log(1+x)
+    +\frac{1}{x}\frac{1}{(1+x)} = \frac{x -(1+x)\log(1+x) }
+    {x^2(1+x)} = \frac{x -(1+x)\log(1+x) }
+    {x^2+x^3}\]
+Taking derivatives gives,
+  \[(x -(1+x)\log(1+x))' = 1 - \log(1+x) -1 = -\log(1+x)\]
+and,
+\[(x^2+x^3)' = 2x+3x^2\]
+Taking derivatives again,
+\[(-\log(1+x))' = -\frac{1}{1+x}\]
+and,
+\[(2x+3x^2)' = 2+6x\text{ .}\]
+
+Now, \[\lim_{x\rightarrow 0} \frac{-\frac{1}{1+x}}{2+6x} =
+  -\frac{1}{2}\]
+
+Since as $x\longrightarrow 0$,\[-\log(1+x) \rightarrow 0\text{ and }
+  2x+3x^2 \longrightarrow 0\]
+Also, \[x -(1+x)\log(1+x) \longrightarrow 0 \text{ and }
+  x^2(1+x)\longrightarrow 0\]
+
+So, \[\lim_{x\rightarrow 0} -\frac{1}{x^2}\log(1+x)
+  +\frac{1}{x}\frac{1}{(1+x)} = - \frac{1}{2}\]
+And since \[\lim_{x\rightarrow 0} (1+x)^{1/x} = e\]
+We have \[\lim_{x\rightarrow 0} -((1+x)^{1/x})' = -\lim_{x\rightarrow
+    0} ((1+x)^{1/x})' = -1\cdot e\cdot(-\frac{1}{2}) = \frac{e}{2}\]
+As $x\rightarrow 0$,\[e-(1+x)^{1/x} \rightarrow 0\]
+So finally by the applications of L'Hospital's rule above,
+\[\lim_{x\rightarrow 0} \frac{e-(1+x)^{1/x}}{x} = \frac{e}{2}\]
+\newpage
+(b)
+
+Note, $\frac{n}{\log n}[n^{1/n} - 1] = \frac{[n^{1/n} -1]}{\frac{\log n}{n}}$
+
+\[
+  n^{1/n} = e^{\frac{1}{n}\log n}
+  \implies \log  n^{1/n} = \frac{1}{n}\log n
+  \implies (\log  n^{1/n})' = \frac{1}{n^{1/n}}\left(n^{1/n}\right)' = \left(\frac{1}{n}\log n\right)'\\
+\]
+Thus,
+\[ (n^{1/n}- 1)' = (n^{1/n})'= n^{1/n}\left(\frac{\log n}{n}\right)'\]
+So,\[\lim_{n\rightarrow \infty} \frac{\left(  n^{1/n}
+      -1\right)'}{\left(\frac{\log n}{n}\right)'} = \lim_{n\rightarrow
+  \infty} \frac{n^{1/n}\left(\frac{\log n}{n}\right)'}{
+  \left(\frac{\log n}{n}\right)'} = \lim_{n\rightarrow \infty}
+n^{1/n} = 1\]
+
+Now, $n= n^1$, and $1\neq -1$. So, by formula (45) in
+p. 181, \[\lim_{n\rightarrow \infty} \frac{\log{n}}{n} = 0\]
+Note, as $n\rightarrow \infty$, \[n^{1/n} -1 \rightarrow 0\]
+So, by L'Hospital's rule, \[\lim_{n\rightarrow \infty} \frac{n}{\log
+    n}[n^{1/n}-1] = 1\]
+(c)
+
+Compute the power series for $\tan x$,
+\begin{align*}
+  (\tan x)^{(0)} = \tan x  &\implies  a_0 = 0 \\
+  (\tan x)^{(1)} = \sec^2 x  &\implies a_1  = 1 \\
+  (\tan x)^{(2)} = 2\sec^2 x \tan x &\implies a_2  = 0 \\
+  (\tan x)^{(3)} = 6\sec^4 x -4\sec^2 x &\implies a_3  = \frac{2}{3!}
+                                          = \frac{1}{3}\\
+  (\tan x)^{(4)} = 8\sec^2(x) \tan(x) (2 \sec^2(x) + \tan^2(x))
+                           &\implies a_4 =0\\
+  (\tan x)^{(5)} = 8 (2 \sec^6(x) + 11 \sec^4(x) \tan^2(x) + 2
+  \sec^2(x) \tan^4(x)) &\implies a_5 = \frac{16}{5!} = \frac{2}{15}
+\end{align*}
+Then, \[\tan x = x +\frac{1}{3}x^3 + \frac{2}{15}x^5 + \cdots \implies \tan{x} -x  =
+  \frac{1}{3}x^3+  \frac{2}{15}x^5 +\cdots\]
+  Now,\[\cos x = (1-\frac{1}{2}x^2+ \frac{1}{4!}x^4 +\cdots) \implies
+  x(1-\cos x) = x(1-1 + \frac{1}{2}x^2 -\frac{1}{4!}x^4\cdots) = \frac{1}{2}x^3
+  -\frac{1}{4!}x^5 + \cdots\]
+So, \[\frac{\tan{x} -x}{x(1-\cos x)} = \frac{\frac{1}{3}x^3 +  \frac{2}{15}x^5 +\cdots}{\frac{1}{2}x^3
+  -\frac{x^5}{4!} + \cdots}  = \frac{1/x^3}{1/x^3}\frac{\frac{1}{3}x^3 +  \frac{2}{15}x^5 +\cdots}{\frac{1}{2}x^3
+  -\frac{x^5}{4!} + \cdots}   = \frac{\frac{1}{3} +  \frac{2}{15}x^2 +\cdots}{\frac{1}{2}
+  -\frac{x^2}{4!} + \cdots}  \]
+Then,
+\[\lim_{x\rightarrow 0} \frac{\tan{x} -x}{x(1-\cos x)} =\lim_{x\rightarrow 0}
+  \frac{\frac{1}{3} +  \frac{2}{15}x^2 +\cdots}{\frac{1}{2}
+    -\frac{x^2}{4!} + \cdots}  = \frac{2}{3} \]
+
+(d)
+\[\sin x = x -\frac{1}{6}x^3+\frac{1}{120}x^5 - \cdots \implies x - \sin x =
+  \frac{1}{6}x^3-\frac{1}{120}x^5 + \cdots\]
+So, \[\frac{x-\sin x}{\tan x -x} =
+  \frac{\frac{1}{6}x^3-\frac{1}{120}x^5 + \cdots}{\frac{1}{3}x^3 +
+    \frac{2}{15}x^5 +\cdots} = \frac{1/x^3}{1/x^3}\frac{\frac{1}{6}x^3-\frac{1}{120}x^5 + \cdots}{\frac{1}{3}x^3 +
+    \frac{2}{15}x^5 +\cdots}  = \frac{\frac{1}{6}-\frac{1}{120}x^2 + \cdots}{\frac{1}{3} +
+    \frac{2}{15}x^2 +\cdots} \]
+Then,\[\lim_{x\rightarrow 0} \frac{x-\sin x}{\tan x - x} =
+  \lim_{x\rightarrow 0} \frac{\frac{1}{6}-\frac{1}{120}x^2 + \cdots}{\frac{1}{3} +
+    \frac{2}{15}x^2 +\cdots} = \frac{1}{2}\]
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+% Used to embed Sage code in latex
+%\usepackage{sagetex}
+
+% Math Environment
+\usepackage{euler}        % Euler font
+\usepackage{amsmath}      % Math macros
+\usepackage{amssymb}      % Math symbols
+\usepackage{unicode-math} % Unicode support
+
+
+\usepackage[makeroom]{cancel} % Used to cancel terms in algebraic equations
+\usepackage{ulem} % Different underline environments
+\usepackage{polynom} %Polynomial long division
+
+% Typesetting Rules
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+% Common Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\Q{\mathbb{Q}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+\def\res{\mathop{\text{Res}}\limits}
+
+% Color
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pagecolor}
+% \definecolor{DeepMossGreen}{HTML}{394820}
+% \pagecolor{DeepMossGreen}
+% \color{Goldenrod}
+
+\begin{document}
+
+\[\frac{\sin x}{x} = \frac{1}{x} \sum_{n=0}^\infty
+  \frac{(-1)^nx^{2n+1}}{(2n+1)!} = \sum_{n=0}^\infty
+  \frac{(-1)^nx^{2n}}{(2n+1)!}  = 1 + \sum_{n=1}^\infty
+  \frac{(-1)^nx^{2n}}{(2n+1)!}\]
+
+So,  \[\lim_{x\rightarrow 0} \frac{\sin x}{x} = 1 + \lim_{x\rightarrow
+  0} \sum_{n=1}^\infty
+\frac{(-1)^nx^{2n}}{(2n+1)!} = 1\]
+
+Also, \[\lim_{x\rightarrow \frac{\pi}{2}} \frac{\sin x}{x} =
+  \frac{\sin \frac{\pi}{2}}{\frac{\pi}{2}} = \frac{1}{\frac{\pi}{2}}
+  = \frac{2}{\pi}\]
+
+Both, $\sin x$ and $\frac{1}{x}$ are continuous on $\left(  0,
+  \frac{\pi}{2}\right)$. So,$\frac{\sin{x}}{x}$ is also continuous
+there, by the intermediate value theorem,\[\forall x \in \left(  0,
+  \frac{\pi}{2}\right)\quad \frac{2}{\pi} <
+  \frac{\sin{x}}{x} < 1 \]
+
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

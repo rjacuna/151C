@@ -1,0 +1,88 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+% Used to embed Sage code in latex
+%\usepackage{sagetex}
+
+% Math Environment
+\usepackage{euler}        % Euler font
+\usepackage{amsmath}      % Math macros
+\usepackage{amssymb}      % Math symbols
+\usepackage{unicode-math} % Unicode support
+
+
+\usepackage[makeroom]{cancel} % Used to cancel terms in algebraic equations
+\usepackage{ulem} % Different underline environments
+\usepackage{polynom} %Polynomial long division
+
+% Typesetting Rules
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+% Common Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+\def\res{\mathop{\text{Res}}\limits}
+
+% Color
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pagecolor}
+ \definecolor{DeepMossGreen}{HTML}{394820}
+\pagecolor{DeepMossGreen}
+\color{Goldenrod}
+
+\begin{document}
+
+\begin{center} \section*{$\zeta(2) = \frac{\pi^2}{6}$} \end{center}
+Consider $f(x) = x$ for $x$ in $[-\pi,\pi]$,
+\begin{alignat*}{2}
+  C_0 &= \frac{1}{2\pi}\int_{-\pi}^\pi x dx = 0& &\text{ Since $x$ is
+    an odd function}\\
+  C_n &= \frac{1}{2\pi} \int_{-\pi}^\pi xe^{inx}dx &&\quad n \neq 0 \\
+  &= \frac{1}{2\pi}\left( x\frac{e^{inx}}{in}\bigg|_{-\pi}^\pi
+    -\int_{-\pi}^\pi\frac{e^{inx}}{in} dx \right) &&\quad u = x\quad dv = e^{inx}dx\\
+  &&&\quad du = dx\quad v = \frac{e^{inx}}{in}\\
+  &= \frac{1}{2\pi}\left( \pi\frac{e^{in\pi}}{in} - (-\pi)\frac{e^{-in\pi}}{in}
+    -\frac{e^{inx}}{(in)^2}\bigg|_{-\pi}^\pi \right) &&\\
+  &= \frac{1}{2\pi}\left( \pi\frac{e^{in\pi}}{in} - (-\pi)\frac{e^{-in\pi}}{in}
+    -\left(  \frac{e^{in\pi}}{(in)^2}
+      -\frac{e^{-in\pi}}{(in)^2}\right) \right) &&\\
+  &= \frac{1}{2\pi}\left( \pi\frac{e^{in\pi}}{in} +\pi\frac{e^{-in\pi}}{in}
+    -\frac{e^{in\pi}}{(in)^2}
+      +\frac{e^{-in\pi}}{(in)^2} \right) &&\,e^{\pm in\pi}= \cos(n\pi)
+    \pm i \sin(n\pi) = \cos(n\pi) = (-1)^n\\
+  &= \frac{1}{2\pi}\left( \pi\frac{(-1)^n}{in} +\pi\frac{(-1)^n}{in}
+    -\frac{(-1)^n}{(in)^2}
+    +\frac{(-1)^n}{(in)^2} \right) &&= \frac{1}{2\pi}\left( \pi\frac{(-1)^n}{in} +\pi\frac{(-1)^n}{in}
+    -\cancel{\frac{(-1)^n}{(in)^2}}
+    +\cancel{\frac{(-1)^n}{(in)^2}} \right)\\
+  &= \frac{1}{2\pi}\left( 2\pi\frac{(-1)^n}{in}\right) =
+  \frac{(-1)^n}{in} = \frac{-i(-1)^n}{n}&&\\
+  &= \frac{i(-1)^{n+1}}{n}
+\end{alignat*}
+\begin{align*}
+  \frac{1}{2\pi}\int_{-\pi}^\pi |x|^2 dx
+  &=\frac{1}{2\pi}\int_{-\pi}^0 (-x)^2 dx +\frac{1}{2\pi}\int_{0}^\pi
+    x^2 dx\\
+  &= \frac{1}{2\pi}\left(  \frac{x^3}{3}\bigg|_{-\pi}^0 +
+    \frac{x^3}{3}\bigg|_{0}^\pi \right)\\
+  &=\frac{1}{2\pi}\left( -\frac{(-\pi)^3}{3} + \frac{\pi^3}{3}
+    \right)  \\
+  &= \frac{1}{2\pi}\left(\frac{2\pi^3}{3} \right)\\
+  &= \frac{\pi^2}{3} = 2\sum_{n=1}^\infty \frac{1}{n^2}\\
+  &= \sum_{n=1}^\infty \frac{1}{(-n)^2}+ \sum_{n=1}^\infty \frac{1}{n^2}\\
+  &= \sum_{-\infty}^\infty \frac{1}{n^2}\\
+  &= \sum_{-\infty}^\infty \frac{|i|^2|(-1)^{n+1}|^2}{n^2}\\
+  &= \sum_{-\infty}^\infty \bigg|\frac{i(-1)^{n+1}}{n}\bigg|^2
+\end{align*}
+Thus, \[\zeta(2) = \sum_{n=1}^\infty \frac{1}{n^2} = \frac{\pi^2}{6}\]
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

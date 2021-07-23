@@ -1,0 +1,151 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+% Used to embed Sage code in latex
+\usepackage{sagetex}
+
+% Math Environment
+\usepackage{euler}        % Euler font
+\usepackage{amsmath}      % Math macros
+\usepackage{amssymb}      % Math symbols
+\usepackage{unicode-math} % Unicode support
+
+
+\usepackage[makeroom]{cancel} % Used to cancel terms in algebraic equations
+\usepackage{ulem} % Different underline environments
+\usepackage{polynom} %Polynomial long division
+
+% Typesetting Rules
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+% Common Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+\def\res{\mathop{\text{Res}}\limits}
+
+% Color
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pagecolor}
+% \definecolor{DeepMossGreen}{HTML}{394820}
+% \pagecolor{DeepMossGreen}
+% \color{Goldenrod}
+
+\begin{document}
+
+\begin{sagesilent}
+  from matplotlib import rc
+  rc('text', usetex=True)
+  rc('text.latex', preamble=r'\usepackage{amssymb}')
+  p = plot(1, (-1.618,1.618))
+  p += circle((-1.618,0),0.01) + plot(0,(-pi + -1.618,- 1.618))
+  p += circle((1.618,0),0.01) + plot(0,(1.618, pi + 1.618))
+  t = text(r"$\delta$", (1.618, -0.2)) + text(r"$-\delta$", (-1.618, -0.2)) + p
+  t.axes_color((0.8,0.8,0.8))
+  t.axes_range(xmin= -pi/2 + -1.618, xmax = pi/2+1.618,ymin=None, ymax=None)
+  t.axes_width(0.001)
+\end{sagesilent}
+
+The following is the subset of the plot of $f$ in $[-\pi,\pi].$
+
+$\sageplot{t}$
+
+(a)
+
+Following formula (62)
+\[c_m = \frac{1}{2\pi} \int_{-\pi}^\pi f(x) e^{-imx} dx\]
+
+Since $f$ is $1$ for $|x|< \delta$ and  $0$ for $\delta < |x|\leq \pi$, we can see that,
+\begin{align*}
+  m\neq 0 \implies c_m &= \frac{1}{2\pi} \int_{-\delta}^\delta e^{-imx} dx\\
+      &=  \frac{1}{2\pi} -\frac{e^{-imx}}{im}|_{-\delta}^\delta\\
+      &=\frac{1}{2\pi} -\left(\frac{e^{-im\delta}}{im} -
+        \frac{e^{im\delta}}{im}\right) \\
+      &=\frac{1}{2\pi} \left(\frac{e^{im\delta}-
+        e^{-im\delta}}{im}\right) \\
+      &=\frac{1}{m\pi} \left(\frac{e^{im\delta}-
+        e^{-im\delta}}{2i}\right) \\
+                       &=\frac{1}{m\pi} \sin(m\delta)\\
+  m=0 \implies c_0 &= \frac{1}{2\pi} \int_{-\delta}^\delta e^{0} dx  \\
+                       &=\frac{\delta-(-\delta)}{2\pi} = \frac{\delta}{\pi}
+\end{align*}
+
+\[c_{-m} =\frac{\sin(-m\delta)}{-m\pi}  = \frac{-\sin(m\delta)}{-m\pi}
+  =\frac{\sin(m\delta)}{m\pi} = \overline{c_m} \]
+
+So, $f$ is real by the remark in page 186. Notice, $\cos(x) = \frac{e^{ix}+e^{-ix}}{2}\implies 2\cos(inx) =
+e^{inx}+e^{-inx}$
+
+Then we can see that if we change $m$ to $n$,
+
+\[f(x) = \sum_{-\infty}^\infty c_n e^{inx} = c_0
+  +\sum_{n=1}^\infty c_n e^{inx} + \sum_{n=1}^\infty c_{-n} e^{i-nx}  =
+  c_0 +\sum_{n=1}^\infty c_n (e^{inx} + e^{i-nx}) = c_0
+  +\sum_{n=1}^\infty c_n 2 \cos(nx)  \]
+
+So $b_n = 0$ for $n\in \N$ and $a_n = 2c_n$, for $(n = 0,1, 2,
+\dots)$.\footnote{This is why Boyce and DiPrima wrote $a_0/2$ in their
+  definition of Fourier series.}
+That is $a_0 =\frac{2\delta}{\pi}$, and $a_n =
+\frac{2\sin(n\delta)}{n\pi}$ for $n\in \N$. Finally
+
+\[f(x) = \frac{\delta}{\pi} +\sum_{n=1}^\infty \frac{2\sin(n\delta)}{n\pi}\cos(nx)   \]
+
+\newpage
+(b)
+\[\forall t\in [-\delta,\delta]\quad  |f(0+t) -f(0)| = |1-1| = 0 \leq |t|\]
+
+Thus by 8.14 $\lim_{n\rightarrow \infty}S_n(f;0) = f(0)$ , which means
+
+\begin{align*}
+  \frac{\delta}{\pi} +\sum_{n=0}^\infty   \frac{2\sin(n\delta)}{n\pi}\cos(0) = f(0)
+  &\implies \frac{\delta}{\pi} +\sum_{n=0}^\infty
+                                          \frac{2\sin(n\delta)}{n\pi}
+    = 1 \\
+  &\implies \frac{2}{\pi} \sum_{n=0}^\infty
+                                          \frac{\sin(n\delta)}{n}
+    = 1 - \frac{\delta}{\pi}\\
+  &\implies \sum_{n=0}^\infty
+                                          \frac{\sin(n\delta)}{n}
+    = \frac{\pi}{2} - \frac{\delta}{2}\\
+  &\implies \sum_{n=0}^\infty
+                                          \frac{\sin(n\delta)}{n}
+    = \frac{\pi-\delta}{2}
+\end{align*}
+
+(c)
+Formula (84) gives us what we need,
+
+\[\frac{1}{2\pi} \int_{-\pi}^\pi |f(x)|^2 dx = \sum_{-\infty}^\infty |c_n|^2\]
+
+\begin{align*}
+  \frac{1}{2\pi} \int_{-\pi}^\pi |f(x)|^2 dx
+  &= \frac{1}{2\pi} \int_{-\delta}^\delta |1|^2 dx\\
+  &=    \frac{\delta-(-\delta)}{2\pi}\\
+  &= \frac{\delta}{\pi}\\
+  &= \frac{\delta^2}{\pi^2} + 2\sum_{n=1}^\infty
+    \frac{\sin^2(n\delta)}{n^2\pi^2}\\
+  &= c_0^2 + 2\sum_{n=1}^\infty |c_n|^2\\
+  &= c_0^2 + \sum_{n=1}^\infty |c_n|^2+\sum_{n=1}^\infty |c_n|^2\\
+  &= c_0^2 + \sum_{n=1}^\infty |c_{-n}|^2+\sum_{n=1}^\infty |c_n|^2\\
+  &= \sum_{-\infty}^\infty |c_n|^2\\
+\frac{\delta}{\pi}
+  = \frac{\delta^2}{\pi^2} + 2\sum_{n=1}^\infty
+  \frac{\sin^2(n\delta)}{n^2\pi^2}
+  &\implies \delta\pi  =\delta^2 + 2\sum_{n=1}^\infty
+    \frac{\sin^2(n\delta)}{n^2}\\
+  &\implies \pi  =\delta + 2\sum_{n=1}^\infty
+    \frac{\sin^2(n\delta)}{n^2\delta}\\
+  &\implies \sum_{n=1}^\infty
+    \frac{\sin^2(n\delta)}{n^2\delta} = \frac{\pi-\delta}{2}\\
+\end{align*}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

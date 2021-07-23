@@ -1,0 +1,81 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+% Used to embed Sage code in latex
+%\usepackage{sagetex}
+
+% Math Environment
+\usepackage{euler}        % Euler font
+\usepackage{amsmath}      % Math macros
+\usepackage{amssymb}      % Math symbols
+\usepackage{unicode-math} % Unicode support
+
+
+\usepackage[makeroom]{cancel} % Used to cancel terms in algebraic equations
+\usepackage{ulem} % Different underline environments
+\usepackage{polynom} %Polynomial long division
+
+% Typesetting Rules
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+% Common Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\Q{\mathbb{Q}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+\def\res{\mathop{\text{Res}}\limits}
+
+% Color
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pagecolor}
+% \definecolor{DeepMossGreen}{HTML}{394820}
+% \pagecolor{DeepMossGreen}
+% \color{Goldenrod}
+
+\begin{document}
+Suppose $f$ is a continuous function on $R^1$,$f(x+2\pi) = f(x)$, and
+$\alpha/\pi$ is irrational.
+
+Prove that
+\[\lim_{N\rightarrow \infty} \frac{1}{N}\sum_{n=1}^N f(x+n\alpha)
+  =\frac{1}{2\pi}\int_{-\pi}^\pi f(t) dt\]
+for every $x$. \textit{Hint:}  do it first for $f(x) = e^{ikx}$.
+
+\uwave{pf.}
+
+$f$ is continuous on $\R \implies f \in \mathcal{R}$, furthermore $f(x+2\pi) = f(x)$ so the period of $f$ is $2\pi$.
+
+Since $\alpha/\pi$ is irrational $\not\exists k\in \Z:\, n\alpha  =
+k\pi\quad (n = 1,2,\dots, N).$ So $f(x+n\alpha) \neq f(x+k\pi)$.
+
+Furthermore $\{f(x+n\alpha)\}_{n=1}^N \subset f([-\pi,\pi])$, because
+$f(-\pi)= f(\pi)$ and $f$ is continuous with period $2\pi$.
+
+Furthermore, $f(x+n\alpha)$
+are distinct points in  $f([-\pi,\pi])$.
+
+Since, $f \in \mathcal{R}$ it
+follows that a fine enough partition by sample points is equal to the
+integral.
+
+Let $P$ be the evenly
+distributed partition of $[-\pi,\pi]$. Then $\varDelta x_n =
+\frac{\pi-(-\pi)}{N} = \frac{2\pi}{N}$.
+
+\[\int_{-\pi}^\pi f(x) dx = \lim_{n\rightarrow \infty} \sum_{n=1}^N
+  f(x +n\alpha)\frac{2\pi}{N} \implies \lim_{N\rightarrow \infty} \frac{1}{N}\sum_{n=1}^N f(x+n\alpha)
+  =\frac{1}{2\pi}\int_{-\pi}^\pi f(t) dt\quad \blacksquare\]
+
+\end{document}
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

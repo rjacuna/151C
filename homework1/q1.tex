@@ -1,0 +1,104 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+% Used to embed Sage code in latex
+%\usepackage{sagetex}
+
+% Math Environment
+\usepackage{euler}        % Euler font
+\usepackage{amsmath}      % Math macros
+\usepackage{amssymb}      % Math symbols
+\usepackage{unicode-math} % Unicode support
+
+
+\usepackage[makeroom]{cancel} % Used to cancel terms in algebraic equations
+\usepackage{ulem} % Different underline environments
+\usepackage{polynom} %Polynomial long division
+
+% Typesetting Rules
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+% Common Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+\def\res{\mathop{\text{Res}}\limits}
+
+% Color
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pagecolor}
+% \definecolor{DeepMossGreen}{HTML}{394820}
+% \pagecolor{DeepMossGreen}
+% \color{Goldenrod}
+
+\begin{document}
+
+(a)
+
+$b^x = e^{x\log b} (b > 0)$ by formula (43) in p. 181.
+
+So, $(b^x - 1)' = (e^{x\log b} - 1)' =e^{x\log b}(x \log b)' +(-1)' = e^{x\log
+  b} \log b  + 0= e^{x\log
+  b} \log b$
+
+Since $x' = 1$, we have\[\lim_{x\rightarrow 0} e^{x\log
+    b} \log b = \lim_{x\rightarrow 0} \sum_{k = 0}^\infty \frac{\left( x \log b
+    \right)^k}{k!} = \sum_{k = 0}^\infty
+  \frac{\lim_{x\rightarrow 0} \left( x \log b
+    \right)^k}{k!} = \sum_{k = 0}^\infty
+  \frac{ \left( \lim_{x\rightarrow 0} x \log b
+    \right)^k}{k!} = \sum_{k = 0}^\infty
+  \frac{ 0^k}{k!} =  e^0 \log b
+  = \log b\]
+ As $x\rightarrow 0$ \[b^x-1 \longrightarrow b^0-1 = e^{0\log b} -1 =
+   1-1 = 0\]
+ So by L'Hospital's rule,
+ \[\lim_{x\rightarrow 0}\frac{b^x-1}{x} = \log b\]
+
+ (b)
+
+ Since, $\log(1+x)' = \frac{1}{1+x}$ and $x' = 1$. $\lim_{x\rightarrow
+   0} = \frac{1}{1+0} =1$.
+ As $x\rightarrow 0$,\[\log(1+x) \longrightarrow \log(1+0) = \log 1 = 0\]
+
+ So by L'Hospital's rule,
+ \[\lim_{x\rightarrow 0} \frac{\log(1+x)}{x} = 1\]
+
+ (c)
+
+ We know from Theorem $3.31$ that, \[\lim_{n\rightarrow \infty}\left(
+     1 + \frac{1}{n} \right)^n = e\]
+
+ Put $x = \frac{1}{n}$, then $n = 1/x$, and  \[x \longrightarrow 0 \iff
+   n\longrightarrow \infty \]
+ So, \[\lim_{n\rightarrow \infty}\left(
+     1 + \frac{1}{n} \right)^n = e = \lim_{x\rightarrow 0} \left( 1 +
+     x\right)^{1/x}\]
+
+(d)
+\begin{align*}
+   \lim_{n\rightarrow \infty}\left( 1 + \frac{x}{n} \right)^n
+   &= \lim_{n\rightarrow \infty} \sum_{k=0}^n\begin{pmatrix}n\\k\end{pmatrix}
+   1^{n-k}\frac{x^{k}}{n^{k}}\\
+   &= \lim_{n\rightarrow \infty} \sum_{k=0}^n\frac{n!}{k!(n-k)!} \frac{x^{k}}{n^{k}}\\
+   &= \lim_{n\rightarrow \infty} \sum_{k=0}^n\frac{x^{k}}{k!}
+     \frac{n!}{n^{k}(n-k)!}\\
+   &= \lim_{n\rightarrow \infty} \sum_{k=0}^n\frac{x^{k}}{k!}
+     \frac{(n-1)(n-2)\cdots(n-(k+1)}{n^{k-1}}\\
+  &= \sum_{k=0}^n\frac{x^{k}}{k!} \lim_{n\rightarrow \infty}
+    \frac{n^{k-1}+ P(n)}{n^{k-1}}\text{ where }\deg P(n) < k-1\\
+     &= \sum_{k=0}^n\frac{x^{k}}{k!} \\
+  &= e^x
+\end{align*}
+
+Note, we could've used (d) to prove (c) instead of invoking $3.31$
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

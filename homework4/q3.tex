@@ -1,0 +1,171 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+% Used to embed Sage code in latex
+%\usepackage{sagetex}
+
+% Math Environment
+\usepackage{euler}        % Euler font
+\usepackage{amsmath}      % Math macros
+\usepackage{amssymb}      % Math symbols
+\usepackage{unicode-math} % Unicode support
+
+
+\usepackage[makeroom]{cancel} % Used to cancel terms in algebraic equations
+\usepackage{ulem} % Different underline environments
+\usepackage{polynom} %Polynomial long division
+
+% Typesetting Rules
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+% Common Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\Q{\mathbb{Q}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+\def\res{\mathop{\text{Res}}\limits}
+
+% Color
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pagecolor}
+% \definecolor{DeepMossGreen}{HTML}{394820}
+% \pagecolor{DeepMossGreen}
+% \color{Goldenrod}
+
+\begin{document}
+If $\alpha$ is real and $-1 <x < 1$, prove Newton's binomial theorem,
+\[(1+x)^{\alpha} = 1+\sum_{n=1}^\infty \frac{\alpha(\alpha
+    -1)\cdots(\alpha-n+1)}{n!} x^n\]
+
+\uwave{pf.}
+
+Let $f(x) = 1+\sum_{n=1}^\infty \frac{\alpha(\alpha
+  -1)\cdots(\alpha-n+1)}{n!} x^n$, by the quotient test we have,
+\begin{align*}
+  R&= \lim_{n \rightarrow \infty} \frac{\left|  \frac{\alpha(\alpha
+      -1)\cdots(\alpha-n+1)}{n!}\right|}{\left|\frac{\alpha(\alpha
+     -1)\cdots(\alpha-(n+1)+1)}{(n+1)!}\right|}\\
+   &= \lim_{n \rightarrow \infty} \left|\frac{\alpha(\alpha
+      -1)\cdots(\alpha -(n-1)+1)(\alpha-n+1)(n+1)n!}{\alpha(\alpha
+  -1)\cdots(\alpha -(n-1))(\alpha-n)n!}\right|\\
+   &= \lim_{n \rightarrow \infty} \left|\frac{\alpha(\alpha
+      -1)\cdots(\alpha-n+1)(n+1)}{\alpha(\alpha
+     -1)\cdots(\alpha -n +1)(\alpha-n)}\right|\\
+  &= \lim_{n \rightarrow \infty} \frac{n+1}{\left|\alpha-n\right|} = 1\\
+\end{align*}
+So $f$ converges for $|x|<1$
+
+\begin{align*}
+  f'(x) &= \sum_{n=1}^\infty \frac{\alpha(\alpha
+  -1)\cdots(\alpha-n+1)}{(n-1)!} x^{n-1}\\
+  &\implies f'(x) + xf'(x) = \sum_{n=1}^\infty \frac{\alpha(\alpha
+  -1)\cdots(\alpha-n+1)}{(n-1)!} x^{n-1} + x\sum_{n=1}^\infty \frac{\alpha(\alpha
+    -1)\cdots(\alpha-n+1)}{(n-1)!} x^{n-1}\\
+  &\implies (1+x)f'(x) = \sum_{n=1}^\infty \frac{\alpha(\alpha
+  -1)\cdots(\alpha-n+1)}{(n-1)!} x^{n-1} + \sum_{n=1}^\infty \frac{\alpha(\alpha
+    -1)\cdots(\alpha-n+1)}{(n-1)!} x^{n}\\
+  k = n-1 &\implies (1+x)f'(x) = \sum_{k=0}^\infty \frac{\alpha(\alpha
+            -1)\cdots(\alpha-k)}{k!} x^{k} + \sum_{n=1}^\infty \frac{\alpha(\alpha
+            -1)\cdots(\alpha-n+1)}{(n-1)!} x^{n}\\
+          &\implies (1+x)f'(x) = \alpha + \sum_{k=1}^\infty \frac{\alpha(\alpha
+            -1)\cdots(\alpha-k)}{k!} x^{k} + \sum_{n=1}^\infty \frac{\alpha(\alpha
+            -1)\cdots(\alpha-n+1)}{(n-1)!} x^{n}\\
+  &\implies (1+x)f'(x) = \alpha + \sum_{n=1}^\infty \frac{\alpha(\alpha
+            -1)\cdots(\alpha-n)}{n!} + \frac{\alpha(\alpha
+    -1)\cdots(\alpha-n+1)}{(n-1)!} x^{n}\\
+  &\implies (1+x)f'(x) = \alpha +\alpha \sum_{n=1}^\infty \frac{(\alpha
+            -1)\cdots(\alpha-n)}{n!} + \frac{(\alpha
+    -1)\cdots(\alpha-n+1)}{(n-1)!} x^{n}\\
+  &\implies (1+x)f'(x) = \alpha +\alpha \sum_{n=1}^\infty \frac{(\alpha
+            -1)\cdots(\alpha-n) + n(\alpha
+    -1)\cdots(\alpha-n+1)}{n!} x^{n}\\
+  &\implies (1+x)f'(x) = \alpha +\alpha \sum_{n=1}^\infty \frac{\color{blue}(\alpha
+            -1)\cdots(\alpha -n+1)\color{black}(\alpha-n) + n\color{blue}(\alpha
+    -1)\cdots(\alpha-n+1)\color{black}}{n!} x^{n}\\
+  &\implies (1+x)f'(x) = \alpha +\alpha \sum_{n=1}^\infty \frac{\color{blue}(\alpha
+    -1)\cdots(\alpha -n+1)\color{black}[(\alpha-n) + n]}{n!} x^{n}\\
+  &\implies (1+x)f'(x) = \alpha +\alpha \sum_{n=1}^\infty \frac{\alpha(\alpha
+    -1)\cdots(\alpha -n+1)}{n!} x^{n}\\
+  &\implies (1+x)f'(x) = \alpha\left(1 + \sum_{n=1}^\infty \frac{\alpha(\alpha
+    -1)\cdots(\alpha -n+1)}{n!} x^{n}\right)\\
+  &\implies (1+x)f'(x) = \alpha f(x)\\
+\end{align*}
+
+Write $f'(x)= \frac{dy}{dx}$, and $f(x) = y$, now we have a separable
+first order ordinary differential equation,
+\[(1+x)\frac{dy}{dx}= \alpha y \implies \int \frac{dy}{y}= \int
+  \frac{\alpha}{1+x} dx \implies \log y = \alpha\log (1+x) + K
+  \implies y = e^Ke^{\alpha\log(1+x)} = C(1+x)^\alpha \]
+
+If $K= 0\implies C = 1$, thus for $-1 < x < 1$,
+\[(1+x)^\alpha = 1 + \sum_{n=1}^\infty \frac{\alpha(\alpha
+    -1)\cdots(\alpha-n+1)}{n!} x^n\]
+
+Now, for the other equality note by 8.18 (a) $0 < \alpha < \infty$ implies,
+\begin{align*}
+  \Gamma(n + \alpha)
+  &= \Gamma(1 + n-1 + \alpha)\\
+  &= (n-1 + \alpha) \Gamma(n-1 + \alpha)\\
+  \Gamma(n-1 + \alpha)
+  &= \Gamma(1 + n-2 + \alpha)\\
+  &= (n-2 + \alpha) \Gamma(n-2 + \alpha)\\
+  \Gamma(n-2 + \alpha)
+  &= \Gamma(1 + n-3 + \alpha)\\
+  &= (n-3 + \alpha) \Gamma(n-3 + \alpha)\\
+  &\vdots\\
+  \Gamma(n-(n-2) + \alpha)
+  &= \Gamma(1 + 1 + \alpha)\\
+  &= (1 + \alpha) \Gamma(1 + \alpha)\\
+  \Gamma(n-(n-1) + \alpha)
+  &= \Gamma(1  + \alpha)\\
+  &= \alpha \Gamma(\alpha)
+\end{align*}
+Therefore $\Gamma(n+\alpha) = (n-1 + \alpha)(n-2 + \alpha)(n-3 +
+\alpha)\cdots (2+\alpha)(1+\alpha)\alpha \Gamma(\alpha)$ is a
+reasonable formula, which we want to prove by induction.
+
+The base case is just 8.18 (a), now assume the formula above holds
+for all $k\leq n$.
+\[\Gamma(n+1 +\alpha) = \Gamma(1 + n+\alpha) =
+  (n+\alpha)\Gamma(n+\alpha) = (n + \alpha)(n-1 + \alpha)(n-2 + \alpha)(n-3 +
+  \alpha)\cdots (2+\alpha)(1+\alpha)\alpha \Gamma(\alpha)\]
+The third equality holds by 8.18 (a) and the fourth by plugging in our
+assumption for $n$. Thus the induction is complete and the formula
+works for all natural numbers and $0<\alpha<\infty$. Then,
+\[\frac{\Gamma(n+\alpha)}{\Gamma(\alpha)} = (n-1 + \alpha)(n-2 + \alpha)(n-3 +
+  \alpha)\cdots (2+\alpha)(1+\alpha)\alpha\]
+
+Note, \[-\alpha(-\alpha
+    -1)\cdots(-\alpha -n + 2 )(-\alpha-n+1) = -(n-1+\alpha)\cdot
+    -(n-2+\alpha)\cdots-(1+\alpha)-\alpha\]
+
+There are $n$ terms in the product since you start at $(n-1+\alpha)$
+and you end at $(n-n+\alpha)= \alpha$, so,
+\[-\alpha(-\alpha
+    -1)\cdots(-\alpha -n + 2 )(-\alpha-n+1) = (-1)^n(n-1 + \alpha)(n-2 + \alpha)(n-3 +
+    \alpha)\cdots (2+\alpha)(1+\alpha)\alpha = (-1)^n\frac{\Gamma(n+\alpha)}{\Gamma(\alpha)}\]
+
+Since $(1+x)^\alpha = 1 + \sum_{n=1}^\infty \frac{\alpha(\alpha
+    -1)\cdots(\alpha-n+1)}{n!} x^n$, plugging in $-\alpha$ and $-x$
+  for $|-x| = |x|<1$, we get,
+
+  \[(1+(-x))^{-\alpha} = 1 + \sum_{n=1}^\infty \frac{-\alpha(-\alpha
+    -1)\cdots(-\alpha-n+1)}{n!} (-x)^n = 1 + \sum_{n=1}^\infty
+  \frac{(-1)^n\Gamma(n+\alpha)}{n!\Gamma(\alpha)} (-1)^nx^n\]
+
+So, the $(-1)^n$ cancel each other and we have for $-1<x<1$ and
+$\alpha > 0$,
+
+\[(1-x)^{-\alpha} = 1 + \sum_{n=1}^\infty
+  \frac{\Gamma(n+\alpha)}{n!\Gamma(\alpha)} x^n\]
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

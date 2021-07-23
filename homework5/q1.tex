@@ -1,0 +1,289 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+% Used to embed Sage code in latex
+%\usepackage{sagetex}
+
+% Math Environment
+\usepackage{euler}        % Euler font
+\usepackage{amsmath}      % Math macros
+\usepackage{amssymb}      % Math symbols
+\usepackage{unicode-math} % Unicode support
+
+
+\usepackage[makeroom]{cancel} % Used to cancel terms in algebraic equations
+\usepackage{ulem} % Different underline environments
+\usepackage{polynom} %Polynomial long division
+
+% Typesetting Rules
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+% Common Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\Q{\mathbb{Q}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+\def\res{\mathop{\text{Res}}\limits}
+
+% Color
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pagecolor}
+% \definecolor{DeepMossGreen}{HTML}{394820}
+% \pagecolor{DeepMossGreen}
+% \color{Goldenrod}
+
+\begin{document}
+Prove that if a norm $||\,.\,||$ on a $\C-$vector space $V$ satisfies
+the following parallelogram identity:
+
+\begin{equation}
+  \|u+v\|^2+\|u-v\|^2 = 2\|u\|^2+2\|v\|^2\text{ for all }u,v \in V,
+\end{equation}
+
+
+
+Then $\|\,.\,\|$ is induced by a Hermitian inner product.
+
+\uwave{pf.}
+
+The following equations will be useful, for all $u,v\in V$
+
+\begin{equation}
+  \|u+v\|^2-\|u-v\|^2 = 2\left( \|u\|^2+\|v\|^2 - \|u-v\|^2 \right)
+\end{equation}
+
+\begin{equation}
+  -i\|u+iv\|^2+i\|u-iv\|^2 = -2i\left( \|u\|^2+\|v\|^2 - \|u-iv\|^2 \right)
+\end{equation}
+
+Let $\langle . , .\rangle: V^2\rightarrow \C$ defined by,
+\begin{equation}
+  \langle x,\ y\rangle := {\frac
+    {1}{4}}\left(\|x+y\|^{2}-\|x-y\|^{2}-i\|x-iy\|^{2}+i\|x+iy\|^{2}\right)\
+  \forall \ x,y\in V
+  \end{equation}
+  With (2) and (3) we can rewrite (4)
+\begin{equation}
+  \langle x,\ y\rangle = {\frac
+    {1}{2}}\left( \|x\|^2+\|y\|^2 -
+     \|x-y\|^2 \right) -{\frac
+    {1}{2}}i\left(
+      \|x\|^2+\|y\|^2 - \|x-iy\|^2 \right)
+\end{equation}
+
+
+
+Henceforth $u,v,w\in V$,
+
+
+\begin{align*}
+  \overline{\langle v,u \rangle}
+  &= \overline{{\frac
+    {1}{4}}\left(\|v+u\|^{2}-\|v-u\|^{2}-i\|v-iu\|^{2}+i\|v+iu\|^{2}\right)}\\
+  &= {\frac
+    {1}{4}}\left(\|v+u\|^{2}-\|v-u\|^{2}+i\|v-iu\|^{2}-i\|v+iu\|^{2}\right)\\
+  &= {\frac
+    {1}{4}}\left(\|u+v\|^{2}-\|u-v\|^{2}+i\|-i(iv+u)\|^{2}-i\|i(-iv+u)\|^{2}\right)\\
+  &= {\frac
+    {1}{4}}\left(\|u+v\|^{2}-\|u-v\|^{2}+i(|-i|\|u+iv\|)^{2}-i(|i|\|u-iv\|)^{2}\right)\\
+  &= {\frac
+    {1}{4}}\left(\|u+v\|^{2}-\|u-v\|^{2}  +i\|u+iv\|^{2} -i\|u-iv\|^{2} \right)\\
+  &= {\frac
+    {1}{4}}\left(\|u+v\|^{2}-\|u-v\|^{2} -i\|u-iv\|^{2}
+    +i\|u+iv\|^{2}\right)\\
+  &= \langle u,v \rangle
+\end{align*}
+
+So, $\langle .,. \rangle$ has conjugate symmetry.
+
+\begin{align*}
+  \langle u,u \rangle &= {\frac
+    {1}{2}}\left( \|u\|^2+\|u\|^2 -
+     \|u-u\|^2 \right) -{\frac
+    {1}{2}}i\left(
+                        \|u\|^2+\|u\|^2 - \|u-iu\|^2 \right) \\
+  &=
+    \|u\|^2 -{\frac
+    {1}{2}}i\left(
+    2\|u\|^2 - \|(1-i)u\|^2 \right) \\
+  &= \|u\|^2 -{\frac
+    {1}{2}}i\left(
+    2\|u\|^2 - |1-i|^2\|u\|^2 \right) \\
+  &= \|u\|^2 -{\frac
+    {1}{2}}i\left(
+      2\|u\|^2 - 2\|u\|^2 \right) \\
+  &=\|u\|^2 > 0
+\end{align*}
+
+So, $\langle .,. \rangle$ is positive definite.
+
+\newpage
+The following equations will also be useful, for all $x,y \in V$
+
+\begin{equation}
+  \|x+y\|^2 = 2\left( \|x\|^2+\|y\|^2\right) - \|x-y\|^2\,
+\end{equation}
+
+\begin{equation}
+  \|x-y\|^2 = 2\left( \|x\|^2+\|y\|^2\right) - \|x+y\|^2\,
+\end{equation}
+
+\begin{equation}
+  \|x\|^2+\|y\|^2 = \frac{1}{2}\left(  \|x+y\|^2 + \|x-y\|^2\right)
+\end{equation}
+
+By repeated applications of (6), (7), and (8) we get,
+
+\begin{align*}
+&{\frac
+    {1}{4}}\left( \|u+v+w\|^2
+    -\|u+v-w\|^2 ) \right)\\
+  &= {\frac
+    {1}{4}}\left( \|u+v+w\|^2+ \|w\|^2  - \|u+v\|^2
+    -(\|u+v-w\|^2 +\|w\|^2 -\|u+v\|^2)) \right)\\
+  &= {\frac
+    {1}{4}}\left( \|u+v+w\|^2+ \|w\|^2  - \|u+v+w-w\|^2
+    -(\|u+v-w\|^2 +\|-w\|^2 -\|u+v+w-w\|^2)) \right)\\
+  &= {\frac
+    {1}{4}}\left( \frac{1}{2}\left( 2(\|u+v+w\|^2+ \|w\|^2  -
+    \|u+v+w-w\|^2)\right)-(\frac{1}{2}\left( 2(\|u+v-w\|^2 +\|-w\|^2
+    -\|u+v+w-w\|^2)\right))
+    \right)\\
+  &= {\frac
+    {1}{4}}\left( \frac{1}{2}\left(  \|u+v+w+w\|^2\right)
+    -(\frac{1}{2}\left(  \|u+v-w -w\|^2\right)) \right)\\
+  &= {\frac
+    {1}{4}}\left( \frac{1}{2}\left(  \|u+v+w+w\|^2\right)
+    -(\frac{1}{2}\left(  \|u+v-w -w\|^2\right)) \right)\\
+  &= {\frac
+    {1}{4}}\left( \frac{1}{2}\left(  \|u+v+w+w\|^2 + \|u-v\|^2\right)
+    -(\frac{1}{2}\left(  \|u+v-w -w\|^2 + \|u-v\|^2\right)) \right)\\
+  &= {\frac
+    {1}{4}}\left( \frac{1}{2}\left(  \|u+w+v+w\|^2 +
+    \|u+w-(v+w)\|^2\right)
+  -(\frac{1}{2}\left(  \|u-w+v-w\|^2 + \|u-w-(v-w)\|^2\right)) \right)\\
+  &= {\frac
+    {1}{4}}\left( \|u+w\|^2 +\|v+w\|^2 -(\|u-w\|^2+
+   \|v-w\|^2) \right)\\
+  &= {\frac
+    {1}{4}}\left( \|u+w\|^2 -
+     \|u-w\|^2  +\|v+w\|^2 -
+   \|v-w\|^2 \right)\\
+  &= {\frac
+    {1}{4}}\left( 2(\|u\|^2+\|w\|^2 -
+     \|u-w\|^2)  +2(\|v\|^2+\|w\|^2 -
+   \|v-w\|^2) \right)\\
+  &= {\frac
+    {1}{2}}\left( \|u\|^2+\|w\|^2 -
+     \|u-w\|^2  +\|v\|^2+\|w\|^2 -
+   \|v-w\|^2 \right)\\
+&= {\frac
+    {1}{2}}\left( \|u\|^2+\|w\|^2 -
+     \|u-w\|^2 \right)
+    + {\frac
+    {1}{2}}\left( \|v\|^2+\|w\|^2 -
+     \|v-w\|^2 \right)
+\end{align*}
+
+\begin{align*}
+  \langle u+v,w \rangle
+  &= {\frac{1}{4}}\left( \|u+v+w\|^2
+    -\|u+v-w\|^2 ) \right) + {\frac{i}{4}}\left( \|u+v+iw\|^2
+    -\|u+v-iw\|^2 ) \right)\\
+  &= {\frac
+    {1}{2}}\left( \|u\|^2+\|w\|^2 -
+     \|u-w\|^2 \right)
+    + {\frac
+    {1}{2}}\left( \|v\|^2+\|w\|^2 -
+     \|v-w\|^2 \right) \\ &- {\frac
+    {i}{2}}\left( \|u\|^2+\|w\|^2 -
+     \|u-iw\|^2 \right)
+    - {\frac
+    {i}{2}}\left( \|v\|^2+\|w\|^2 -
+                            \|v-iw\|^2 \right)\\
+  &= \langle u,w \rangle+\langle v,w \rangle
+\end{align*}
+
+\newpage
+\begin{align*}
+  \langle u+w,v \rangle = \langle u,v \rangle +\langle w,v \rangle
+  &\implies \langle 2u,v \rangle = 2\langle u,v \rangle\\
+  \text{ do induction }& \implies \langle nu,v \rangle = n\langle u,v
+                         \rangle \forall n\in \N\\
+                         &\implies \langle \frac{p}{q}u,v \rangle =
+                           p\langle \frac{1}{q} u,v
+                           \rangle \forall p\in \Z,q\in \N\\
+                         &\implies q\langle \frac{p}{q}u,v \rangle =
+                           pq\langle \frac{1}{q} u,v
+                           \rangle = p\langle \frac{q}{q} u,v
+                           \rangle = p\langle u,v
+                           \rangle \\
+     &\implies \langle \frac{p}{q}u,v \rangle =
+                           \frac{p}{q} \langle u,v
+       \rangle \\
+  &\implies \langle ru,v \rangle = r\langle u,v \rangle \forall r\in \Q
+  \end{align*}
+
+Since, $V$ is a $\C-$vector space and $\langle .,. \rangle \in \C$, it
+follows that $\{\langle r_i u,v
+\rangle\}_{i=1}^\infty, u,v \in V$, converges if it's a Cauchy
+sequence.
+
+Since every $\alpha \in \R$ is the limit of a Cauchy sequence $\{r_i\}_{i=1}^\infty$.
+
+Let $\varepsilon>0: N\in \N: i,j>N \implies |r_i-r_j|<\frac{\varepsilon}{|\langle u,v \rangle|}$.
+
+\[\implies |\langle r_i u,v
+\rangle -\langle r_j u,v
+\rangle| = |r_i \langle u,v
+\rangle - r_j\langle u,v
+\rangle| = |r_i  - r_j||\langle u,v
+\rangle| < \frac{\varepsilon}{|\langle u,v
+\rangle|} |\langle u,v
+\rangle| = \varepsilon \]
+
+Thus
+\begin{equation}
+\forall \alpha \in \R\quad \langle \alpha u,v \rangle = \alpha \langle u,v \rangle
+\end{equation}
+
+
+\begin{align*}
+  \langle iu,v \rangle &={\frac
+                         {1}{4}}\left(\|iu+v\|^{2}-\|iu-v\|^{2}-i\|iu-iv\|^{2}+i\|iu+iv\|^{2}\right)\\
+  &={\frac
+    {1}{4}}\left(\|i(u-iv)\|^{2}-\|i(u+iv)\|^{2}-i\|u-v\|^{2}+i\|u+v\|^{2}\right)\\
+  &={\frac
+    {1}{4}}\left((|i|\|u-iv\|)^{2}-(|i|\|u+iv\|)^{2}-i\|u-v\|^{2}+i\|u+v\|^{2}\right)\\
+  &={\frac
+                         {i}{4}}\left(\|u+v\|^{2}-\|u-v\|^{2}-i\|u-iv\|^{2}+i\|u+iv\|^{2}\right)\\
+  &= i\langle u,v \rangle
+\end{align*}
+
+Let $z\in \C:\exists \alpha,\beta\in\R: z= \alpha +i\beta$,
+\begin{align*}
+  \langle zu,v \rangle &= \langle (\alpha+i\beta) u,v \rangle\\
+                       &= \alpha \langle u,v \rangle + \beta \langle iu,v \rangle\\
+                       &= \alpha \langle u,v \rangle + i\beta \langle
+                         u,v \rangle\\
+                       &= (\alpha+ i\beta) \langle u,v \rangle\\
+                       &=z\langle u,v \rangle
+\end{align*}
+
+Thus, $\langle .\,,. \rangle$ is linear in its first entry. So it is a
+Hermitian  inner product $\quad \blacksquare$
+
+
+\end{document}
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,149 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+% Used to embed Sage code in latex
+%\usepackage{sagetex}
+
+% Math Environment
+\usepackage{euler}        % Euler font
+\usepackage{amsmath}      % Math macros
+\usepackage{amssymb}      % Math symbols
+\usepackage{unicode-math} % Unicode support
+
+
+% Physics Environment
+\usepackage{physics}
+
+
+\usepackage[makeroom]{cancel} % Used to cancel terms in algebraic equations
+\usepackage{ulem} % Different underline environments
+\usepackage{polynom} %Polynomial long division
+
+% Typesetting Rules
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+% Common Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\Q{\mathbb{Q}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+\def\res{\mathop{\text{Res}}\limits}
+
+% Color
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pagecolor}
+% \definecolor{DeepMossGreen}{HTML}{394820}
+% \pagecolor{DeepMossGreen}
+% \color{Goldenrod}
+
+\begin{document}
+
+Suppose that $f$ is a differentiable mapping of a connected open set
+$E\subset R^n$ into $R^m$, and if $f'(\vb{x}) = 0 $ for every
+$\vb{x}\in E$, prove that $f$ is constant in $E$.
+
+\uwave{pf.}
+
+By  Chapter 2, Exercises 23, and 23, $\R^n$ has a countable base by
+open balls. So every open set can be covered by countably many open
+balls. Since $E$ is open it follows that for any sequence $\{\vb{x}_i\}_{i=
+  1}^{\infty}$ of elements of $E$, there exists a
+sequence $\{\delta_i\}_{i=1}^\infty$ of positive real numbers
+such that,
+\begin{align*}
+  E = \bigcup_{i=1}^\infty B_{\delta_i}(\vb{x}_i)
+&\implies \forall \vb{x}\in E,\exists i\in \N: \vb{x} \in B_{\delta_i}(\vb{x}_i)\\
+  &\implies \forall \vb{y} \in
+    B_{\delta_i}(\vb{x}_i),\, \vb{y} \in E \\
+  &\implies \forall \vb{y} \in
+    B_{\delta_i}(\vb{x}_i),\, f'(\vb{y}) = 0\\
+  &\implies \forall \vb{y} \in
+    B_{\delta_i}(\vb{x}_i),\, \|f'(\vb{y})\| \leq 0\\
+  \forall i \in \N,\, B_{\delta_i}(\vb{x}_i)\text{ is a convex open set
+  }&\overset{9.19}{\implies}  \forall \vb{a},\vb{b}\in
+     B_{\delta_i}(\vb{x}_i),\,  |f(\vb{b})-f(\vb{a})|\leq 0
+     |\vb{b}-\vb{a}| = 0\\
+  &\implies \forall \vb{a},\vb{b}\in
+     B_{\delta_i}(\vb{x}_i),\, f(\vb{b}) = f(\vb{a}) &\hspace{1.5cm}\text{(0)}
+\end{align*}
+
+
+$E$ is connected, which by definition 2.45 means that $E$ is not a
+union of two non empty separated set. A pair of separated set $A,$ and $ B,\,$
+in $\R^n$ satisfies both $A\cap \overline{B} = \emptyset$, and $
+\overline{A}\cap B = \emptyset$. So, since $E$ is already contained in a
+union and $E$ is connected. It means it is not the union of a pair of
+separated sets.It follows that, since $\vb{x}_1 \in E,\,$ both
+
+\begin{equation}
+  B_{\delta_1}(\vb{x}_1)
+  \bigcap \overline{\bigcup_{i= 2}^\infty
+    B_{\delta_i}(\vb{x}_i)} \neq \emptyset\end{equation}
+and
+\begin{equation}\overline{B_{\delta_1}(\vb{x}_1)}
+  \bigcap \bigcup_{i=2}^\infty
+  B_{\delta_i}(\vb{x}_i)\neq \emptyset \end{equation}
+hold.Then by (2),
+\begin{align*}
+ \overline{B_{\delta_1}(\vb{x}_1)}
+  \bigcap \bigcup_{i = 2}^\infty
+  B_{\delta_i}(\vb{x}_i) &= \bigcup_{i = 2}^\infty \overline{B_{\delta_1}(\vb{x}_1)}
+  \bigcap
+                               B_{\delta_i}(\vb{x}_i)\neq \emptyset
+  \implies \exists j > 1: \overline{B_{\delta_1}(\vb{x}_1)}
+  \bigcap
+                               B_{\delta_j}(\vb{x}_j)\neq \emptyset
+\end{align*}
+
+Then $\exists \vb{y_0}\in  \overline{B_{\delta_1}(\vb{x}_1)}
+\bigcap   B_{\delta_j}(\vb{x}_j) \implies
+\vb{y_0}\in
+\overline{B_{\delta_1}(\vb{x}_1)}$
+and $\vb{y_0} \in  B_{\delta_j}(\vb{x}_j) $
+\begin{align*}
+ j > 1 &\implies   B_{\delta_j}(\vb{x}_j)
+  \subset \bigcup_{i=2}^\infty
+  B_{\delta_i}(\vb{x}_i) \subset \overline{\bigcup_{i=2}^\infty
+  B_{\delta_i}(\vb{x}_i)}\\
+                               &\implies \vb{y_0}  \in \overline{\bigcup_{i=2}^\infty
+  B_{\delta_i}(\vb{x}_i)}\\
+                               &\overset{\text{(1)}}{\implies}
+                                 \vb{y_0} \in
+                                 B_{\delta_1}(\vb{x}_1) \implies
+                                 \vb{y_0} \in
+                                 B_{\delta_1}(\vb{x}_1) \cap  B_{\delta_j}(\vb{x}_j)\\
+                               &\overset{\text{(0)}}{\implies} \forall \vb{a}\in
+                                 B_{\delta_1}(\vb{x}_1)\text{, and
+                                 }\forall \vb{b} \in B_{\delta_j}(\vb{x}_j),\quad  f(\vb{a}) = f(\vb{y_0}) = f(\vb{b})
+\end{align*}
+
+Since $B_{\delta_1}(\vb{x}_1)$ and $B_{\delta_j}(\vb{x}_j)$ are open balls. So, their union and their intersection is open. Furthermore $B_{\delta_1}(\vb{x}_1)\cap B_{\delta_j}(\vb{x}_j)\neq
+\emptyset \implies \overline{B_{\delta_1}(\vb{x}_1)}\cap B_{\delta_j}(\vb{x}_j)\neq
+\emptyset$ and $B_{\delta_1}(\vb{x}_1)\cap\overline{ B_{\delta_j}(\vb{x}_j)}\neq
+\emptyset$. So, $B_{\delta_1}(\vb{x}_1)$, and $B_{\delta_1}(\vb{x}_1)$
+are not separated, therefore $B_{\delta_1}(\vb{x}_1) \cup
+B_{\delta_1}(\vb{x}_1)$ is a connected open set. We can re-index
+as follows
+$\{\vb{x}_k\}_{k=1}^\infty$, and $\{\delta_k\}_{k=1}^\infty$, such
+that the $j$ gets swapped with $2$. And, then we follow the process
+above to find $\vb{y}_2$ noticing that with the re-indexing, both
+\[\overline{B_{\delta_1}(\vb{x}_1)\cup B_{\delta_2}(\vb{x}_1)}
+  \bigcup_{k=3}^\infty B_{\delta_k}(\vb{x}_k)\neq \emptyset\quad\text{ and }B_{\delta_1}(\vb{x}_1)\cup B_{\delta_2}(\vb{x}_1)
+  \overline{\bigcup_{k=3}^\infty B_{\delta_k}(\vb{x}_k)}\neq \emptyset\]
+Then it follows by induction that can find a sequence $\{y_n\}_{n=
+  1}^\infty$, and a re-indexing, such that,
+\[\forall \vb{a},\vb{b}\in E\quad  f(\vb{a})= f(\vb{b})\]
+Therefore, $f$ is constant in $E\quad \blacksquare$
+
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

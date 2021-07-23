@@ -1,0 +1,80 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+% Used to embed Sage code in latex
+%\usepackage{sagetex}
+
+% Physics Environment
+\usepackage{physics}
+
+% Math Environment
+\usepackage{euler}        % Euler font
+\usepackage{amsmath}      % Math macros
+\usepackage{amssymb}      % Math symbols
+\usepackage{unicode-math} % Unicode support
+
+
+\usepackage[makeroom]{cancel} % Used to cancel terms in algebraic equations
+\usepackage{ulem} % Different underline environments
+\usepackage{polynom} %Polynomial long division
+
+% Typesetting Rules
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+% Common Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\Q{\mathbb{Q}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+\def\res{\mathop{\text{Res}}\limits}
+
+% Color
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pagecolor}
+% \definecolor{DeepMossGreen}{HTML}{394820}
+% \pagecolor{DeepMossGreen}
+% \color{Goldenrod}
+
+\begin{document}
+
+Suppose that $f$ is a differentiable real function in an open set
+$E\subset R^n$, and that $f$ has a local maximum at a point $\vb{x}\in
+E$. Prove that $f'(\vb{x}) = 0$
+
+\uwave{slu.}
+
+Fix $\vb{y}\in \R^n$,
+
+Let $\gamma: [-1,1]\longrightarrow \R^m; t\mapsto \vb{x} + t\vb{y}$
+
+Let $\phi: [-1,1]\longrightarrow \R; \phi =  f \circ \gamma$
+
+Since $\gamma$ is differentiable, $(-1,1)\subset [-1,1]$ is open, and $f$ maps
+$\gamma(-1,1)$ into $\R$, it follows by Theorem
+9.15 that $\phi$ is differentiable on $(-1,1)$. And formula (22) holds
+ for $-1<t<1$,
+\begin{equation}\phi'(t) = f'(\gamma(t))\gamma'(t)\end{equation}
+
+Since, $\vb{x}$ is a local maximum of $f$. It follows that $0$
+is a  local maximum of $\phi$, since $\phi(0) = f(\vb{x})$.
+
+Since $\phi$ has  local maximum at $t=0$, it follows from Theorem 5.8
+that $\phi'(0)= 0$, then
+\begin{equation} f'(\gamma(0))\gamma'(0) = f'(\vb{x}) \vb{y} = 0\end{equation}
+
+Since $\vb{y}$ was an arbitrary non zero vector it follows that,
+\[ f'(\vb{x}) = 0\quad \blacksquare\]
+
+\end{document}
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

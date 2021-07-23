@@ -1,0 +1,61 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+% Used to embed Sage code in latex
+%\usepackage{sagetex}
+
+% Math Environment
+\usepackage{euler}        % Euler font
+\usepackage{amsmath}      % Math macros
+\usepackage{amssymb}      % Math symbols
+\usepackage{unicode-math} % Unicode support
+
+
+\usepackage[makeroom]{cancel} % Used to cancel terms in algebraic equations
+\usepackage{ulem} % Different underline environments
+\usepackage{polynom} %Polynomial long division
+
+% Typesetting Rules
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+% Common Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\Q{\mathbb{Q}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+\def\res{\mathop{\text{Res}}\limits}
+
+% Color
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pagecolor}
+% \definecolor{DeepMossGreen}{HTML}{394820}
+% \pagecolor{DeepMossGreen}
+% \color{Goldenrod}
+
+\begin{document}
+
+Use the hint, exists $\phi$ on $[a,b]$ with $\phi' = \gamma'/\gamma$
+and $\phi(a) = 0$. That $\phi$ must be the one on $FTC$ 1, i.e.
+
+$\phi(x) =\int_a^x \frac{\gamma'(t)}{\gamma(t)} dt$
+
+Since $\gamma\exp(-\phi)$ is constant, it follows $\exp(\phi(b)) =
+1\implies \phi(b) = -2\pi in$. So $\text{Ind}(\gamma)$ is some
+integer. Now compute,
+\[\frac{1}{2\pi i}\int_0^{2\pi} \frac{ine^{int}}{e^{int}} dt  =
+  \frac{n}{2\pi }\int_0^{2\pi} dt = n\]
+
+So, if $\gamma = e^{int}$ then  Ind($\gamma$) $= n$.
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
