@@ -1,0 +1,8 @@
+# exclude everything except .tex files
+*/*
+!.gitignore
+!README.md
+!**/**.tex
+!**/**.pdf
+!**/**.ipynb
+
